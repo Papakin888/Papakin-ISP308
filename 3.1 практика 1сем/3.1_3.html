@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Имена группы</title>
+</head>
+<body>
+    <h1>Имена группы</h1>
+    <div id="groupNames"></div>
+
+    <script>
+        // Функция-конструктор для создания объекта группы
+        function Group(names) {
+            // Свойство 'names' будет хранить массив имен
+            this.names = names;
+
+            // Метод для вывода имен группы
+            this.displayNames = function() {
+                // Получаем элемент, куда будем выводить имена
+                const outputElement = document.getElementById('groupNames');
+                
+                // Преобразуем массив имен в строку и выводим в элемент
+                outputElement.textContent = 'Имена группы: ' + this.names.join(', ');
+            };
+        }
+
+        // Создаем новый объект группы с помощью оператора 'NEW'
+        const myGroup = new Group(['Алексей', 'Мария', 'Дмитрий', 'Елена']);
+
+        // Вызываем метод для отображения имен группы
+        myGroup.displayNames();
+    </script>
+</body>
+</html>
+

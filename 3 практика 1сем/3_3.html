@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Среднее арифметическое</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Среднее арифметическое положительных и отрицательных чисел</h1>
+    <div id="originalArray" class="result"></div>
+    <div id="positiveAverage" class="result"></div>
+    <div id="negativeAverage" class="result"></div>
+    <div id="zeroCount" class="result"></div>
+
+    <script>
+        // Генерация массива случайных чисел
+        function generateRandomArray(size) {
+            const array = [];
+            for (let i = 0; i < size; i++) {
+                array.push(Math.floor(Math.random() * 21) - 10); // Случайные числа от -10 до 10
+            }
+            return array;
+        }
+
+        // Функция для вычисления среднего арифметического положительных и отрицательных чисел
+        function calculateStatistics(arr) {
+            let positiveSum = 0; // Сумма положительных чисел
+            let negativeSum = 0; // Сумма отрицательных чисел
+            let positiveCount = 0; // Количество положительных чисел
+            let negativeCount = 0; // Количество отрицательных чисел
+            let zeroCount = 0; // Количество нулей
+
+            // Проходим по каждому элементу массива
+            arr.forEach(num => {
+                if (num > 0) {
+                    positiveSum += num; // Добавляем к сумме положительных
+                    positiveCount++; // Увеличиваем счетчик положительных
+                } else if (num < 0) {
+                    negativeSum += num; // Добавляем к сумме отрицательных
+                    negativeCount++; // Увеличиваем счетчик отрицательных
+                } else {
+                    zeroCount++; // Увеличиваем счетчик нулей
+                }
+            });
+
+            // Вычисляем средние арифметические, если есть соответствующие числа
+            const positiveAverage = positiveCount > 0 ? (positiveSum / positiveCount) : 0;
+            const negativeAverage = negativeCount > 0 ? (negativeSum / negativeCount) : 0;
+
+            return { positiveAverage, negativeAverage, zeroCount };
+        }
+
+        // Основной код
+        const n = 15; // Размер массива (можно изменить)
+        const originalArray = generateRandomArray(n); // Генерируем массив
+        document.getElementById("originalArray").textContent = "Исходный массив: " + originalArray.join(", ");
+
+        const { positiveAverage, negativeAverage, zeroCount } = calculateStatistics(originalArray); // Вычисляем статистику
+
+        // Отображаем результаты на странице
+        document.getElementById("positiveAverage").textContent = "Среднее арифметическое положительных чисел: " + positiveAverage;
+        document.getElementById("negativeAverage").textContent = "Среднее арифметическое отрицательных чисел: " + negativeAverage;
+        document.getElementById("zeroCount").textContent = "Количество нулей: " + zeroCount;
+    </script>
+</body>
+</html>

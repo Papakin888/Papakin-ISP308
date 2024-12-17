@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Симулятор случайных значений</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Симулятор случайных значений</h1>
+<button id="simulateButton">Запустить симуляцию</button>
+<p id="result"></p>
+
+<script>
+    // Функция для запуска симуляции
+    function simulate() {
+        const iterations = 1000000; // Количество симуляций
+        let lastValue = -1; // Предыдущее значение (инициализируем как -1, чтобы не совпадало с 0, 1 или 2)
+        let currentStreak = 0; // Текущая длина последовательности
+        let maxStreak = 0; // Максимальная длина последовательности
+        let maxValue = -1; // Значение, которое имеет максимальную последовательность
+
+        // Запускаем симуляцию заданное количество раз
+        for (let i = 0; i < iterations; i++) {
+            const randomValue = Math.floor(Math.random() * 3); // Генерируем случайное значение от 0 до 2
+
+            // Если текущее значение совпадает с предыдущим
+            if (randomValue === lastValue) {
+                currentStreak++; // Увеличиваем текущую длину последовательности
+            } else {
+                // Если текущая последовательность длиннее максимальной
+                if (currentStreak > maxStreak) {
+                    maxStreak = currentStreak; // Обновляем максимальную длину
+                    maxValue = lastValue; // Обновляем значение максимальной последовательности
+                }
+                currentStreak = 1; // Сбрасываем текущую длину последовательности
+            }
+
+            lastValue = randomValue; // Обновляем предыдущее значение
+        }
+
+        // Проверяем последнюю последовательность после завершения цикла
+        if (currentStreak > maxStreak) {
+            maxStreak = currentStreak; // Обновляем максимальную длину
+            maxValue = lastValue; // Обновляем значение максимальной последовательности
+        }
+
+        // Обновляем текст в элементе результата
+        document.getElementById('result').textContent = 
+            `Самая длинная последовательность: ${maxStreak} раз(а) значение ${getColorName(maxValue)}`;
+    }
+
+    // Функция для получения названия цвета по его значению
+    function getColorName(value) {
+        switch (value) {
+            case 0: return "красный";
+            case 1: return "черный";
+            case 2: return "белый";
+            default: return "неизвестный";
+        }
+    }
+
+    // Назначаем обработчик события для кнопки
+    document.getElementById('simulateButton').addEventListener('click', simulate);
+</script>
+
+</body>
+</html>

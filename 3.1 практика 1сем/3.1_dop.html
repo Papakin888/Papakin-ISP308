@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+</head>
+<body>
+    <h1>Калькулятор</h1>
+    <!-- Поля ввода для чисел -->
+    <input type="number" id="num1" placeholder="Первое число">
+    <input type="number" id="num2" placeholder="Второе число">
+    
+    <!-- Кнопки для арифметических операций -->
+    <button id="add">Сложить</button>
+    <button id="subtract">Вычесть</button>
+    <button id="multiply">Умножить</button>
+    <button id="divide">Разделить</button>
+    
+    <!-- Элемент для отображения результата -->
+    <h2 id="result">Результат: </h2>
+
+    <script>
+        // Объект Калькулятор
+        const Calculator = {
+            // Метод сложения
+            add: function(a, b) {
+                return a + b; // Возвращает сумму a и b
+            },
+            // Метод вычитания
+            subtract: function(a, b) {
+                return a - b; // Возвращает разность a и b
+            },
+            // Метод умножения
+            multiply: function(a, b) {
+                return a * b; // Возвращает произведение a и b
+            },
+            // Метод деления
+            divide: function(a, b) {
+                // Проверка на деление на ноль
+                if (b === 0) {
+                    return "Ошибка: Деление на ноль"; // Возвращает ошибку, если делитель равен нулю
+                }
+                return a / b; // Возвращает частное a и b
+            }
+        };
+
+        // Обработчик события для кнопки сложения
+        document.getElementById("add").addEventListener("click", function() {
+            const num1 = parseFloat(document.getElementById("num1").value); // Получаем первое число
+            const num2 = parseFloat(document.getElementById("num2").value); // Получаем второе число
+            const result = Calculator.add(num1, num2); // Вызываем метод сложения
+            document.getElementById("result").innerText = "Результат: " + result; // Отображаем результат
+        });
+
+        // Обработчик события для кнопки вычитания
+        document.getElementById("subtract").addEventListener("click", function() {
+            const num1 = parseFloat(document.getElementById("num1").value); // Получаем первое число
+            const num2 = parseFloat(document.getElementById("num2").value); // Получаем второе число
+            const result = Calculator.subtract(num1, num2); // Вызываем метод вычитания
+            document.getElementById("result").innerText = "Результат: " + result; // Отображаем результат
+        });
+
+        // Обработчик события для кнопки умножения
+        document.getElementById("multiply").addEventListener("click", function() {
+            const num1 = parseFloat(document.getElementById("num1").value); // Получаем первое число
+            const num2 = parseFloat(document.getElementById("num2").value); // Получаем второе число
+            const result = Calculator.multiply(num1, num2); // Вызываем метод умножения
+            document.getElementById("result").innerText = "Результат: " + result; // Отображаем результат
+        });
+
+        // Обработчик события для кнопки деления
+        document.getElementById("divide").addEventListener("click", function() {
+            const num1 = parseFloat(document.getElementById("num1").value); // Получаем первое число
+            const num2 = parseFloat(document.getElementById("num2").value); // Получаем второе число
+            const result = Calculator.divide(num1, num2); // Вызываем метод деления
+            document.getElementById("result").innerText = "Результат: " + result; // Отображаем результат
+        });
+    </script>
+</body>
+</html>
+

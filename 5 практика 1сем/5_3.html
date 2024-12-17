@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Среднее значение и дни до Нового года</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Вычисление среднего значения и дней до Нового года</h1>
+
+<!-- Кнопка для вычисления среднего значения -->
+<button id="averageButton">Вычислить среднее значение</button>
+<p id="averageResult"></p>
+
+<!-- Кнопка для вычисления количества дней до Нового года -->
+<button id="daysButton">Сколько дней до Нового года?</button>
+<p id="daysResult"></p>
+
+<script>
+    // Стрелочная функция для вычисления среднего значения данных в массиве
+    const calculateAverage = (array) => {
+        if (array.length === 0) return 0; // Проверка на пустой массив
+        const sum = array.reduce((acc, num) => acc + num, 0); // Суммируем все элементы массива
+        return sum / array.length; // Возвращаем среднее значение
+    };
+
+    // Стрелочная функция для вычисления количества дней до Нового года
+    const daysUntilNewYear = () => {
+        const today = new Date(); // Получаем текущую дату
+        const nextYear = today.getFullYear() + 1; // Определяем следующий год
+        const newYearDate = new Date(nextYear, 0, 1); // Создаем дату для 1 января следующего года
+        const diffTime = newYearDate - today; // Разница во времени между датами
+        return Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Переводим разницу в дни
+    };
+
+    // Обработчик события для кнопки вычисления среднего значения
+    document.getElementById('averageButton').addEventListener('click', () => {
+        const sampleArray = [10, 20, 30, 40, 50]; // Пример массива
+        const average = calculateAverage(sampleArray); // Вычисляем среднее значение
+        document.getElementById('averageResult').textContent = `Среднее значение: ${average}`; // Отображаем результат
+    });
+
+    // Обработчик события для кнопки вычисления дней до Нового года
+    document.getElementById('daysButton').addEventListener('click', () => {
+        const days = daysUntilNewYear(); // Вычисляем количество дней до Нового года
+        document.getElementById('daysResult').textContent = `Дней до Нового года: ${days}`; // Отображаем результат
+    });
+</script>
+
+</body>
+</html>

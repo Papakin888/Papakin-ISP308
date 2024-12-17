@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+</head>
+<body>
+    <!-- Кнопка для счёта от 1 до 10 -->
+    <button id="countButton">1-10</button> 
+    <!-- Кнопка для предложения "Еще по одной?" -->
+    <button id="moreone">Еще по одной?</button> 
+    <!-- Кнопка для вывода простых чисел -->
+    <button id="primesButton">Простые числа</button>
+    <!-- Кнопка для начала отгадок -->
+    <button id="questionButton">Начать отгадки</button> 
+    <div id="output"></div> <!-- Блок для вывода результатов -->
+
+    <div>
+        <h2>Факториал</h2>
+        <label for="journalNumber">Порядковый номер в журнале:</label>
+        <input type="number" id="journalNumber" min="0"> <!-- Поле ввода для порядкового номера -->
+        <button id="factorialButton">Вычислить факториал</button> <!-- Кнопка для вычисления факториала -->
+        <p id="factorialResult"></p> <!-- Параграф для вывода результата факториала -->
+    </div>
+
+    <div>
+        <h2>Проверка на палиндром</h2>
+        <label for="lastName">Ваша фамилия:</label>
+        <input type="text" id="lastName"> <!-- Поле ввода для фамилии -->
+        <button id="palindromeButton">Проверить</button> <!-- Кнопка для проверки на палиндром -->
+        <p id="palindromeResult"></p> <!-- Параграф для вывода результата проверки на палиндром -->
+    </div>
+
+    <script>
+        // Получаем элементы кнопок и назначаем им обработчики событий
+        const countButton = document.getElementById('countButton');
+        countButton.addEventListener('click', count); // Обработчик для кнопки счёта
+
+        // Функция для счёта от 1 до 10
+        function count() {
+            let outputString = ""; // Переменная для хранения строки вывода
+            for (let n = 1; n <= 10; n++) {
+                outputString += n + "<br>"; // Добавляем число и перенос строки
+            }
+            document.getElementById('output').innerHTML = outputString; // Выводим результат
+        }
+
+        // Получаем кнопку для "Еще по одной?" и назначаем обработчик
+        const moreone = document.getElementById('moreone');
+        moreone.addEventListener('click', more);
+
+        // Функция для предложения "Еще по одной?"
+        function more() {
+            let response;
+            do {
+                response = prompt('Введите 1 чтобы выйти'); // Запрашиваем ввод пользователя
+                if (response !== '1') {
+                    document.getElementById('output').innerHTML += 'Еще по одной!<br>'; // Выводим сообщение
+                }
+            } while (response !== '1'); 
+            document.getElementById('output').innerHTML += 'Бывай!<br>'; // Сообщение при выходе
+        }
+
+        // Получаем кнопку для начала отгадок и назначаем обработчик
+        const questionButton = document.getElementById('questionButton');
+        const onezagad = "машина"; // Первое загаданное слово
+        const secondzagad = "елка"; // Второе загаданное слово
+
+        // Функция для отгадывания слов
+        function question(){
+            let wordpolz = prompt("введите слово"); // Запрашиваем слово у пользователя
+            if(wordpolz === onezagad){
+                alert("best"); // Сообщение при правильном ответе
+            } else alert("мимо"); // Сообщение при неправильном ответе
+
+            let wordpolz2 = prompt("введите слово"); // Запрашиваем второе слово
+            if(wordpolz2 === secondzagad){
+                alert("best"); // Сообщение при правильном ответе
+            } else alert("мимо"); // Сообщение при неправильном ответе
+        }
+
+        // Получаем кнопку для вывода простых чисел и назначаем обработчик
+        const primesButton = document.getElementById('primesButton');
+        primesButton.addEventListener('click', findPrimes);
+
+        // Функция для нахождения простых чисел
+        function findPrimes() {
+            let journalNumber = parseInt(prompt("Введите ваш порядковый номер в журнале:")); // Запрашиваем номер
+            if (isNaN(journalNumber) || journalNumber <= 1) {
+                alert("Пожалуйста, введите целое число больше 1."); // Проверка на ввод
+                return;
+            }
+            let primes = []; // Массив для хранения простых чисел
+            for (let i = 2; i <= journalNumber; i++) {
+                if (isPrime(i)) {
+                    primes.push(i); // Добавляем простое число в массив
+                }
+            }
+            document.getElementById('output').innerHTML = "Простые числа от 1 до " + journalNumber + ": " + primes.join(", ") + "<br>"; // Выводим результат
+        }
+
+        // Функция для проверки является ли число простым
+        function isPrime(num) {
+            if (num <= 1) return false; // Числа меньше 2 не являются простыми
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false; // Если делится на i, то не простое
+            }
+            return true; // Если не делится, то простое
+        }
+
+        // Получаем элементы для вычисления факториала
+        const factorialButton = document.getElementById('factorialButton');
+        const factorialResult = document.getElementById('factorialResult');
+        const journalNumberInput = document.getElementById('journalNumber');
+
+        // Назначаем обработчик для кнопки факториала
+        factorialButton.addEventListener('click', () => {
+            const num = parseInt(journalNumberInput.value); // Получаем число из поля ввода
+            if (isNaN(num) || num < 0) {
+                factorialResult.textContent = "Пожалуйста, введите неотрицательное целое число."; // Проверка ввода
+                return;
+            }
+            factorialResult.textContent = "Факториал: " + factorial(num); // Выводим результат
+        });
+
+        // Функция для вычисления факториала
+        function factorial(n) {
+            if (n === 0) return 1; // Факториал 0 равен 1
+            let result = 1; // Переменная для хранения результата
+            for (let i = 2; i <= n; i++) {
+                result *= i; // Умножаем на каждое число до n
+            }
+            return result; // Возвращаем результат
+        }
+
+        // Получаем элементы для проверки на палиндром
+        const palindromeButton = document.getElementById('palindromeButton');
+        const palindromeResult = document.getElementById('palindromeResult');
+        const lastNameInput = document.getElementById('lastName');
+
+        // Назначаем обработчик для кнопки проверки на палиндром
+        palindromeButton.addEventListener('click', () => {
+            const lastName = lastNameInput.value.toLowerCase().replace(/[^a-zа-я]/g, ''); // Очищаем ввод
+            palindromeResult.textContent = isPalindrome(lastName) ? "Это палиндром!" : "Это не палиндром."; // Выводим результат
+        });
+
+        // Функция для проверки является ли строка палиндромом
+        function isPalindrome(str) {
+            return str === str.split('').reverse().join(''); // Сравниваем строку с её перевернутой версией
+        }
+    </script>
+</body>
+</html>

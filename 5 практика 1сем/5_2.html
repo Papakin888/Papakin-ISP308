@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка на палиндром</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        input {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Проверка на палиндром</h1>
+    <input type="text" id="surname" placeholder="Введите вашу фамилию">
+    <button id="checkButton">Проверить</button>
+    <h2 id="result"></h2>
+
+    <script>
+        // Функциональное выражение для проверки условий
+        const checkPalindrome = function(surname) {
+            // Стрелочная функция для проверки палиндрома
+            const isPalindrome = (str) => {
+                const cleanedStr = str.replace(/[^a-zA-Zа-яА-Я0-9]/g, '').toLowerCase();
+                const reversedStr = cleanedStr.split('').reverse().join('');
+                return cleanedStr === reversedStr;
+            };
+
+            // Проверка и вывод результата
+            if (surname) {
+                return isPalindrome(surname) ? 'Это палиндром!' : 'Это не палиндром.';
+            } else {
+                return 'Пожалуйста, введите фамилию.';
+            }
+        };
+
+        // Обработчик события для кнопки
+        document.getElementById('checkButton').onclick = () => {
+            const surname = document.getElementById('surname').value;
+            const result = checkPalindrome(surname);
+            document.getElementById('result').innerText = result;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru"> 
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Среднее арифметическое положительных элементов</title> 
+    <style>
+        body {
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+        }
+        button {
+            padding: 10px 15px; 
+            font-size: 16px; 
+            margin-top: 10px; 
+        }
+        #result {
+            margin-top: 20px; 
+            font-size: 18px; 
+            color: green; 
+        }
+    </style>
+</head>
+<body>
+<h1>Среднее арифметическое положительных элементов массива</h1> 
+<button id="calculateButton">Сгенерировать массив и вычислить среднее</button> 
+<p id="result"></p> 
+<script>
+    // Функция для генерации массива случайных чисел
+    function generateRandomArray(size, min, max) {
+        const array = []; // Создаем пустой массив
+        for (let i = 0; i < size; i++) { // Цикл для заполнения массива
+            const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min; // Генерация случайного числа в заданном диапазоне
+            array.push(randomNumber); // Добавление случайного числа в массив
+        }
+        return array; // Возвращаем сгенерированный массив
+    }
+
+    // Функция для вычисления среднего арифметического положительных элементов
+    function calculateAverageOfPositiveElements(array) {
+        const positiveElements = array.filter(num => num > 0); // Фильтруем положительные элементы
+        const sum = positiveElements.reduce((acc, num) => acc + num, 0); // Суммируем положительные элементы
+        // Возвращаем среднее арифметическое или 0, если нет положительных элементов
+        return positiveElements.length > 0 ? sum / positiveElements.length : 0;
+    }
+
+    // Назначаем обработчик события для кнопки
+    document.getElementById('calculateButton').addEventListener('click', function() {
+        const randomArray = generateRandomArray(15, -10, 30); // Генерируем массив из 15 случайных чисел
+        const average = calculateAverageOfPositiveElements(randomArray); // Вычисляем среднее арифметическое положительных элементов
+        // Обновляем текст в элементе результата
+        document.getElementById('result').textContent = 
+            `Сгенерированный массив: [${randomArray.join(', ')}] \n` + // Отображаем сгенерированный массив
+            `Среднее арифметическое положительных элементов: ${average}`; // Отображаем среднее арифметическое
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Симулятор случайных значений</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: rgb(90, 3, 3);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Симулятор случайных значений</h1>
+<button id="simulateButton">Запустить симуляцию</button>
+<p id="result"></p>
+
+<script>
+    // Функция для запуска симуляции
+    function simulate() {
+        const iterations = 1000000; // Количество симуляций
+        let redCount = 0; // Счетчик для красного значения (0)
+
+        // Запускаем симуляцию заданное количество раз
+        for (let i = 0; i < iterations; i++) {
+            const randomValue = Math.floor(Math.random() * 3); // Генерируем случайное значение от 0 до 2
+            if (randomValue === 0) { // Если значение равно 0 (красный)
+                redCount++; // Увеличиваем счетчик красного значения
+            }
+        }
+
+        // Обновляем текст в элементе результата
+        document.getElementById('result').textContent = `Красное значение выпало ${redCount} раз.`;
+    }
+
+    // Назначаем обработчик события для кнопки
+    document.getElementById('simulateButton').addEventListener('click', simulate);
+</script>
+
+</body>
+</html>

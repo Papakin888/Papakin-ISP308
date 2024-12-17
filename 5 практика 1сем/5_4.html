@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стрелочные функции с массивом</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Стрелочные функции с массивом</h1>
+
+<!-- Кнопка для выполнения операций с массивом -->
+<button id="executeButton">Выполнить операции</button>
+<p id="result"></p>
+
+<script>
+    // 1. Пустая стрелочная функция, которая возвращает undefined
+    const emptyFunction = () => {};
+
+    // 2. Создаем массив
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    // 3. Стрелочная функция для суммирования всех элементов массива
+    const sumElements = (array) => {
+        return array.reduce((acc, num) => acc + num, 0); // Используем reduce для суммирования
+    };
+
+    // 4. Стрелочная функция для выявления всех четных элементов массива
+    const findEvenNumbers = (array) => {
+        return array.filter(num => num % 2 === 0); // Фильтруем четные числа
+    };
+
+    // 5. Стрелочная функция для умножения каждого элемента массива на 2
+    const multiplyByTwo = (array) => {
+        return array.map(num => num * 2); // Умножаем каждый элемент на 2
+    };
+
+    // Обработчик события для кнопки
+    document.getElementById('executeButton').addEventListener('click', () => {
+        // Выполняем операции с массивом
+        const sum = sumElements(numbers); // Суммируем элементы
+        const evenNumbers = findEvenNumbers(numbers); // Находим четные числа
+        const multiplied = multiplyByTwo(numbers); // Умножаем на 2
+
+        // Обновляем текст в элементе результата
+        document.getElementById('result').textContent = 
+            `Сумма элементов: ${sum}\n` +
+            `Четные числа: ${evenNumbers.join(', ')}\n` +
+            `Элементы, умноженные на 2: ${multiplied.join(', ')}`;
+    });
+</script>
+
+</body>
+</html>

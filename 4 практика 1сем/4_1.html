@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Примеры</title>
+</head>
+<body>
+    <script>
+        // 1. Функция проверки палиндрома
+        function isPalindrome(str) {
+            const cleanedStr = str.toLowerCase().replace(/[^a-zа-яё]/g, '');
+            return cleanedStr === cleanedStr.split('').reverse().join('');
+        }
+        console.log(isPalindrome("А роза упала на лапу Азора")); // true
+
+        // 2. Замена отрицательных элементов
+        function replaceNegativeElements(array) {
+            return array.map(num => (num < 0 ? num * num : num));
+        }
+        const numbers = [-1, 2, -3, 4, -5, 6, -7, 8, 9, 10, -11];
+        console.log(replaceNegativeElements(numbers)); // [1, 2, 9, 4, 25, 6, 49, 8, 9, 10, 121]
+
+        // 3. Класс для имени пользователя
+        class User {
+            constructor(name) {
+                this.name = name;
+            }
+
+            showName() {
+                console.log(`Имя пользователя: ${this.name}`);
+            }
+
+            showMessage() {
+                alert(`Привет, ${this.name}`);
+            }
+        }
+        const user = new User('Вася');
+        user.showName(); // Имя пользователя: Вася
+        user.showMessage(); // Появится окно с сообщением: Привет, Вася
+
+        // 5. Класс для переворота имени
+        class NameReverser {
+            constructor(name) {
+                this.name = name;
+            }
+
+            reverseName() {
+                return this.name.split('').reverse().join('');
+            }
+        }
+        const nameReverser = new NameReverser('Вася');
+        console.log(nameReverser.reverseName()); // ясаВ
+    </script>
+</body>
+</html>

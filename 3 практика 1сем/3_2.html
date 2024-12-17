@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Замена отрицательных элементов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Замена отрицательных элементов в массиве</h1>
+    <div id="originalArray" class="result"></div>
+    <div id="modifiedArray" class="result"></div>
+
+    <script>
+        // Генерация массива случайных чисел
+        function generateRandomArray(size) {
+            const array = [];
+            for (let i = 0; i < size; i++) {
+                array.push(Math.floor(Math.random() * 21) - 10); // Случайные числа от -10 до 10
+            }
+            return array;
+        }
+
+        // Замена отрицательных элементов их квадратами
+        function replaceNegativeWithSquares(arr) {
+            return arr.map(num => (num < 0 ? num * num : num));
+        }
+
+        // Основной код
+        const n = 15; // Размер массива (должен быть больше 10)
+        if (n > 10) {
+            const originalArray = generateRandomArray(n);
+            document.getElementById("originalArray").textContent = "Исходный массив: " + originalArray.join(", ");
+
+            const modifiedArray = replaceNegativeWithSquares(originalArray);
+            document.getElementById("modifiedArray").textContent = "Массив после замены отрицательных элементов: " + modifiedArray.join(", ");
+        } else {
+            document.getElementById("originalArray").textContent = "Размер массива должен быть больше 10.";
+            document.getElementById("modifiedArray").textContent = "";
+        }
+    </script>
+</body>
+</html>

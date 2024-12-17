@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Объекты</title>
+</head>
+<body>
+
+<div id="output"></div>
+
+<script>
+  // Создаем объекты
+  const bankClient = {
+    firstName: "Иван",
+    lastName: "Иванов",
+    accountNumber: "1234567890",
+    address: "ул. Ленина, д. 1",
+    status: "VIP-клиент",
+    notes: "Активный пользователь мобильного банка."
+  };
+
+  const clinicWorker = {
+    firstName: "Анна",
+    lastName: "Сидорова",
+    speciality: "Врач-терапевт",
+    department: "Терапевтическое отделение",
+    employeeID: "CW-123",
+    shift: "Дневная смена",
+    contact: "anna.s@clinic.com"
+
+  };
+
+  const russianCitizen = {
+    firstName: "Петр",
+    lastName: "Петров",
+    passportNumber: "4567890123",
+    birthDate: "1980-05-15",
+    address: "г. Москва, ул. Пушкина, д. 10",
+    citizenship: "Гражданин РФ",
+    SNILS: "123-456-789-00",
+    INN: "123456789012"
+  };
+
+
+  // Функция для вывода свойств объекта на экран
+  function displayObject(obj, title) {
+    let output = `<h2>${title}</h2>`;
+    for (let key in obj) {
+      output += `<p><b>${key}:</b> ${obj[key]}</p>`;
+    }
+    return output;
+  }
+
+  // Выводим информацию на экран
+  document.getElementById("output").innerHTML = 
+    displayObject(bankClient, "Клиент банка") +
+    displayObject(clinicWorker, "Работник клиники") +
+    displayObject(russianCitizen, "Гражданин РФ");
+
+</script>
+
+</body>
+</html>
+

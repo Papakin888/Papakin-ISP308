@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        input {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Калькулятор</h1>
+    <input type="number" id="num1" placeholder="Первое число">
+    <input type="number" id="num2" placeholder="Второе число">
+    <div>
+        <button onclick="calculate('add')">Сложить</button>
+        <button onclick="calculate('subtract')">Вычесть</button>
+        <button onclick="calculate('multiply')">Умножить</button>
+        <button onclick="calculate('divide')">Разделить</button>
+    </div>
+    <h2 id="result"></h2>
+
+    <script>
+        // Стрелочные функции для операций
+        const add = (a, b) => a + b;
+        const subtract = (a, b) => a - b;
+        const multiply = (a, b) => a * b;
+        const divide = (a, b) => b !== 0 ? a / b : 'Ошибка: деление на ноль';
+
+        // Функция для выполнения выбранной операции
+        const calculate = (operation) => {
+            const number1 = parseFloat(document.getElementById('num1').value);
+            const number2 = parseFloat(document.getElementById('num2').value);
+            let result;
+
+            switch (operation) {
+                case 'add':
+                    result = add(number1, number2);
+                    break;
+                case 'subtract':
+                    result = subtract(number1, number2);
+                    break;
+                case 'multiply':
+                    result = multiply(number1, number2);
+                    break;
+                case 'divide':
+                    result = divide(number1, number2);
+                    break;
+                default:
+                    result = 'Неизвестная операция';
+            }
+
+            document.getElementById('result').innerText = 'Результат: ' + result;
+        };
+    </script>
+</body>
+</html>

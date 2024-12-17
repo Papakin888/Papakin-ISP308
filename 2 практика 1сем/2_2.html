@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадай число</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Угадай число</h1>
+<p>Компьютер загадал число от 1 до 100. Попробуйте его угадать!</p>
+<input type="number" id="userGuess" placeholder="Введите ваше число" min="1" max="100">
+<button id="guessButton">Угадать</button>
+<p id="message"></p>
+
+<script>
+    // Компьютер загадывает случайное число от 1 до 100
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+    const messageElement = document.getElementById('message');
+    const guessButton = document.getElementById('guessButton');
+
+    guessButton.addEventListener('click', function() {
+        const userGuess = parseInt(document.getElementById('userGuess').value);
+
+        // Проверяем, ввел ли пользователь число
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+            messageElement.textContent = "Пожалуйста, введите число от 1 до 100.";
+            return;
+        }
+
+        // Сравниваем предположение пользователя с загаданным числом
+        if (userGuess === randomNumber) {
+            messageElement.textContent = "Поздравляем! Вы угадали число: " + randomNumber;
+        } else if (userGuess < randomNumber) {
+            messageElement.textContent = "Загаданное число больше. Попробуйте снова!";
+        } else {
+            messageElement.textContent = "Загаданное число меньше. Попробуйте снова!";
+        }
+    });
+</script>
+
+</body>
+</html>

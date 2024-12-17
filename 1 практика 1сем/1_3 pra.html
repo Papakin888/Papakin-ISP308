@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вычисление возраста</title>
+    <script>
+        function calculateAge() {
+            // Получаем имя пользователя
+            let name = prompt("Введите ваше имя:");
+
+            // Получаем год рождения
+            let birthYear = prompt("Введите ваш год рождения:");
+
+            // Получаем текущий год
+            let currentYear = new Date().getFullYear();
+
+            // Вычисляем возраст
+            let age = currentYear - birthYear;
+
+            // Выводим результат
+            document.write(name + ": " + age);
+        }
+    </script>
+</head>
+<body>
+
+<h1>Вычисление возраста</h1>
+<button onclick="calculateAge()">Узнать возраст</button>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка строки</title>
+</head>
+<body>
+    <script>
+        const inputString = prompt('Введите строку с цифрами:', '');
+        const phoneNumber = '1234567890'; // Пример номера телефона для проверки
+
+        // Проверка первого символа
+        const firstChar = inputString.charAt(0);
+
+        switch (firstChar) {
+            case '1':
+            case '2':
+            case '3':
+                alert('Первая цифра 1, 2 или 3');
+                break;
+            default:
+                alert('Нет');
+        }
+
+        // Проверка наличия номера телефона в строке
+        if (inputString.includes(phoneNumber)) {
+            alert('Ваш номер телефона найден в строке.');
+        } else {
+            alert('Ваш номер телефона не найден в строке.');
+        }
+    </script>
+</body>
+</html>

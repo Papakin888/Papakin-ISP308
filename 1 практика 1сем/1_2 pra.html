@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадай число</title>
+    <script>
+        function guessNumber() {
+            // Попросим пользователя задумать число
+            alert("Пожалуйста, задумайте число.");
+
+            // Попросим пользователя ввести результат после умножения на 2 и прибавления 7
+            let userResult = prompt("Умножьте ваше число на 2 и прибавьте 7. Введите полученный результат:");
+
+            // Проверим, ввел ли пользователь число
+            if (userResult !== null) {
+                let result = Number(userResult);
+
+                // Вычислим задуманное число
+                let guessedNumber = (result - 7) / 2;
+
+                // Выведем результат
+                alert("Вы задумали число: " + guessedNumber);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<h1>Угадай число</h1>
+<button onclick="guessNumber()">Начать</button>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Возраст и администраторы</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Возраст и администраторы</h1>
+
+<!-- Кнопка для выполнения операций -->
+<button id="executeButton">Выполнить операции</button>
+<p id="result"></p>
+
+<script>
+    // 1. Массив годов рождения
+    const birthYears = [2007, 2006, 1997, 2009, 1995];
+
+    // Вычисление возраста на основе текущего года
+    const currentYear = new Date().getFullYear(); // Получаем текущий год
+    const ages = []; // Массив для хранения возрастов
+    for (let i = 0; i < birthYears.length; i++) {
+        ages.push(currentYear - birthYears[i]); // Вычисляем возраст и добавляем в массив
+    }
+    console.log("Возраст людей:", ages); // Выводим возраст в консоль
+
+    // 2. Массив объектов с именами и возрастами
+    const persons = [
+        { name: 'Peter', age: 16 },
+        { name: 'Mark', age: 18 },
+        { name: 'John', age: 27 },
+        { name: 'Jane', age: 14 },
+        { name: 'Tony', age: 24 },
+    ];
+
+    const fullAge = []; // Массив для хранения совершеннолетних
+    for (let i = 0; i < persons.length; i++) {
+        if (persons[i].age >= 18) { // Проверка на совершеннолетие
+            fullAge.push(persons[i]); // Добавляем совершеннолетнего в массив
+        }
+    }
+    console.log("Совершеннолетние:", fullAge); // Выводим совершеннолетних в консоль
+
+    // 3. Проверка прав редактирования и вывод имени админа
+    const adminPanel = [
+        { name: 'Ivan', access: true },
+        { name: 'Gleb', access: true },
+        { name: 'Anna', access: false },
+    ];
+
+    const adminNames = []; // Массив для хранения имен администраторов с правами
+    for (let i = 0; i < adminPanel.length; i++) {
+        if (adminPanel[i].access) { // Проверяем, есть ли доступ
+            adminNames.push(adminPanel[i].name); // Добавляем имя админа в массив
+        }
+    }
+    
+    // Выводим результаты на экран
+    document.getElementById('executeButton').addEventListener('click', () => {
+        let resultText = "Возраст людей: " + ages.join(', ') + "<br>";
+        resultText += "Совершеннолетние: " + fullAge.map(person => person.name).join(', ') + "<br>";
+        resultText += "Администраторы с правами: " + adminNames.join(', ');
+        document.getElementById('result').innerHTML = resultText; // Отображаем результат на странице
+    });
+</script>
+
+</body>
+</html>

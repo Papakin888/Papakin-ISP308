@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Средний балл и преобразование массива</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+
+<h1>Вычисление среднего балла и преобразование массива</h1>
+
+<!-- Кнопка для выполнения операций -->
+<button id="executeButton">Выполнить операции</button>
+<p id="result"></p>
+
+<script>
+    // 1. Массив баллов студентов
+    const scores = [85, 90, 78, 92, 88]; // Пример массива с баллами студентов
+
+    // Вычисление среднего балла с использованием reduce
+    const averageScore = scores.reduce(function(accumulator, currentValue) {
+        return accumulator + currentValue; // Суммируем баллы
+    }, 0) / scores.length; // Делим на количество студентов для получения среднего
+
+    console.log("Средний балл студентов:", averageScore); // Вывод среднего балла в консоль
+
+    // 2. Массив строк
+    const strArray = ['JavaScript', 'Python', 'PHP', 'Java', 'C'];
+
+    // Функция высшего порядка для преобразования массива
+    function mapForEach(arr, fn) {
+        const newArray = []; // Новый массив для хранения результатов
+        for (let i = 0; i < arr.length; i++) {
+            newArray.push(
+                fn(arr[i]) // Применяем функцию к каждому элементу
+            );
+        }
+        return newArray; // Возвращаем новый массив
+    }
+
+    // Применение функции высшего порядка для создания массива из нулей и единиц
+    const zeroOneArray = mapForEach(strArray, function(item) {
+        return item.length <= 3 ? 0 : 1; // Возвращаем 0 или 1 в зависимости от длины строки
+    });
+
+    console.log("Преобразованный массив (нулей и единиц):", zeroOneArray); // Вывод преобразованного массива в консоль
+
+    // Обработчик события для кнопки
+    document.getElementById('executeButton').addEventListener('click', () => {
+        const resultText = `Средний балл студентов: ${averageScore}<br>
+                            Преобразованный массив (нулей и единиц): ${zeroOneArray.join(', ')}`;
+        document.getElementById('result').innerHTML = resultText; // Отображаем результат на странице
+    });
+</script>
+
+</body>
+</html>
